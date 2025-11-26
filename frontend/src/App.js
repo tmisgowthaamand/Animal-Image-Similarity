@@ -531,18 +531,53 @@ function App() {
                   </div>
 
                   {datasetStats?.categories && Object.keys(datasetStats.categories).length > 0 && (
-                    <Accordion type="single" collapsible className="mt-4">
+                    <Accordion type="single" collapsible className="mt-4" defaultValue="categories">
                       <AccordionItem value="categories">
-                        <AccordionTrigger>Category Distribution</AccordionTrigger>
+                        <AccordionTrigger>Category Distribution ({Object.keys(datasetStats.categories).length} categories)</AccordionTrigger>
                         <AccordionContent>
-                          <div className="category-list">
-                            {Object.entries(datasetStats.categories).map(([cat, count]) => (
-                              <div key={cat} className="category-item">
-                                <span>{cat}</span>
-                                <Badge variant="outline">{count}</Badge>
-                              </div>
-                            ))}
-                          </div>
+                          <ScrollArea className="h-[300px]">
+                            <div className="category-list">
+                              {/* Group categories by type */}
+                              {(() => {
+                                const cats = datasetStats.categories;
+                                const groups = {
+                                  'Mammals': ['cat', 'dog', 'lion', 'tiger', 'elephant', 'bear', 'wolf', 'fox', 'deer', 'zebra', 'giraffe', 'rabbit', 'panda', 'koala', 'horse', 'cow'],
+                                  'Birds': ['eagle', 'owl', 'parrot', 'penguin', 'flamingo', 'peacock'],
+                                  'Fish & Sea': ['shark', 'dolphin', 'whale', 'turtle', 'octopus', 'goldfish', 'clownfish'],
+                                  'Reptiles & Amphibians': ['snake', 'lizard', 'crocodile', 'frog'],
+                                  'Insects': ['butterfly', 'bee'],
+                                  'Other': []
+                                };
+                                
+                                // Get categories that don't fit in groups
+                                const allGrouped = Object.values(groups).flat();
+                                Object.keys(cats).forEach(cat => {
+                                  if (!allGrouped.includes(cat)) {
+                                    groups['Other'].push(cat);
+                                  }
+                                });
+                                
+                                return Object.entries(groups).map(([groupName, groupCats]) => {
+                                  const relevantCats = groupCats.filter(c => cats[c]);
+                                  if (relevantCats.length === 0) return null;
+                                  
+                                  return (
+                                    <div key={groupName} className="mb-4">
+                                      <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                                        {groupName}
+                                      </h5>
+                                      {relevantCats.map(cat => (
+                                        <div key={cat} className="category-item">
+                                          <span className="capitalize">{cat}</span>
+                                          <Badge variant="outline">{cats[cat]}</Badge>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  );
+                                });
+                              })()}
+                            </div>
+                          </ScrollArea>
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
