@@ -180,7 +180,22 @@ function App() {
   };
 
   const getImageUrl = (filepath) => {
-    const relativePath = filepath.split('/uploads/')[1];
+    // Parse filepath like /app/backend/uploads/dataset/dog/dog1.jpg
+    // or /app/backend/uploads/queries/abc.jpg
+    const parts = filepath.split('/uploads/');
+    if (parts.length < 2) return filepath;
+    
+    const relativePath = parts[1]; // dataset/dog/dog1.jpg or queries/abc.jpg
+    const pathParts = relativePath.split('/');
+    
+    if (pathParts[0] === 'dataset' && pathParts.length >= 3) {
+      // dataset/category/filename -> /api/images/dataset/category/filename
+      return `${API}/images/dataset/${pathParts[1]}/${pathParts.slice(2).join('/')}`;
+    } else if (pathParts[0] === 'queries' && pathParts.length >= 2) {
+      // queries/filename -> /api/images/queries/_/filename
+      return `${API}/images/queries/_/${pathParts.slice(1).join('/')}`;
+    }
+    
     return `${BACKEND_URL}/uploads/${relativePath}`;
   };
 
