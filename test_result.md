@@ -204,8 +204,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Image Search - Find similar images"
-    - "FAISS Index Building"
+    - "Dataset Management - expanded 87 images"
+    - "FAISS Index Building - 87 images indexed"
+    - "Image Search - test across all categories"
+    - "Sample Categories API - organized by type"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -215,3 +217,5 @@ agent_communication:
     message: "Added 15 new real animal images to the dataset. Total 26 images. Index rebuilt successfully. Please test the search functionality with different animal images."
   - agent: "testing"
     message: "COMPREHENSIVE BACKEND TESTING COMPLETED: All 9 API endpoints tested successfully (100% pass rate). Verified all review request requirements: 1) Dataset stats API returns 27 images with correct categories, 2) Categories API returns proper list, 3) Search API works with multipart form data and real images, 4) Logs API returns activity logs. Search functionality tested with real dog image - perfect similarity matching working. All backend APIs are fully functional."
+  - agent: "main"
+    message: "MAJOR UPDATE: Expanded dataset from 27 to 87 images across 36 categories. Added: Birds (eagle, owl, parrot, penguin, flamingo, peacock), Fish/Sea (shark, dolphin, whale, turtle, octopus, goldfish, clownfish), Wildlife (bear, wolf, deer, zebra, giraffe, fox, rabbit, panda, koala), Reptiles (snake, lizard, crocodile, frog), Insects (butterfly, bee), Farm (horse, cow). Index rebuilt. Please test search functionality across different animal types."
