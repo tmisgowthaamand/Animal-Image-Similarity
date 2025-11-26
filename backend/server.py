@@ -433,6 +433,35 @@ async def get_sample_categories():
     ]
     return {"categories": categories}
 
+@api_router.get("/images/{image_type}/{category}/{filename}")
+async def serve_image(image_type: str, category: str, filename: str):
+    """Serve images through API endpoint for Kubernetes compatibility"""
+    from fastapi.responses import FileResponse
+    
+    if image_type == "dataset":
+        file_path = DATASET_DIR / category / filename
+    elif image_type == "queries":
+        file_path = QUERIES_DIR / filename
+    else:
+        raise HTTPException(status_code=404, detail="Invalid image type")
+    
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Image not found")
+    
+    # Determine content type
+    suffix = file_path.suffix.lower()
+    content_types = {
+        '.jpg': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.png': 'image/png',
+        '.gif': 'image/gif',
+        '.webp': 'image/webp',
+        '.bmp': 'image/bmp'
+    }
+    content_type = content_types.get(suffix, 'application/octet-stream')
+    
+    return FileResponse(file_path, media_type=content_type)
+
 # Include the router in the main app
 app.include_router(api_router)
 
