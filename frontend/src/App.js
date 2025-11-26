@@ -454,10 +454,25 @@ function App() {
                         <SelectTrigger data-testid="category-select">
                           <SelectValue placeholder="Select category" />
                         </SelectTrigger>
-                        <SelectContent>
-                          {sampleCategories.map(cat => (
-                            <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                          ))}
+                        <SelectContent className="max-h-[300px]">
+                          {sampleCategories && typeof sampleCategories === 'object' && !Array.isArray(sampleCategories) ? (
+                            // Organized categories by type
+                            Object.entries(sampleCategories).map(([group, cats]) => (
+                              <div key={group}>
+                                <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider bg-muted/50">
+                                  {group.replace(/_/g, ' ')}
+                                </div>
+                                {Array.isArray(cats) && cats.map(cat => (
+                                  <SelectItem key={cat} value={cat} className="pl-4">{cat}</SelectItem>
+                                ))}
+                              </div>
+                            ))
+                          ) : Array.isArray(sampleCategories) ? (
+                            // Flat list of categories
+                            sampleCategories.map(cat => (
+                              <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                            ))
+                          ) : null}
                           <SelectItem value="unknown">unknown</SelectItem>
                         </SelectContent>
                       </Select>
