@@ -111,11 +111,14 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Added 15 new real animal images (3 per category) from Unsplash/Pexels. Total 26 images now in dataset."
+      - working: true
+        agent: "testing"
+        comment: "TESTED: Dataset stats API returns 27 total images with correct category distribution: cat(5), dog(5), elephant(5), lion(5), tiger(5), test_category(2). Upload functionality working correctly."
 
   - task: "FAISS Index Building - Build similarity search index"
     implemented: true
@@ -123,11 +126,14 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Index rebuilt with 26 images. Using ResNet50 for feature extraction and FAISS IndexFlatIP for cosine similarity search."
+      - working: true
+        agent: "testing"
+        comment: "TESTED: Index building API works correctly. Index built successfully with 27 images. FAISS index loads properly on startup and search operations."
 
   - task: "Image Search - Find similar images"
     implemented: true
@@ -135,11 +141,14 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Search API endpoint ready. Need to test with actual query images."
+      - working: true
+        agent: "testing"
+        comment: "TESTED: Search API fully functional. Tested with real dog image from dataset - returned 10 results in ~424ms with perfect similarity match (1.0000) for identical image. Multipart form data with file, top_k, and threshold parameters working correctly."
 
 frontend:
   - task: "Search UI - Upload query image and display results"
