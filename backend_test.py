@@ -13,7 +13,7 @@ from pathlib import Path
 import time
 
 class AnimalSearchAPITester:
-    def __init__(self, base_url="https://furry-friends-78.preview.emergentagent.com"):
+    def __init__(self, base_url="https://species-explorer-2.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tests_run = 0

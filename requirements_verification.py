@@ -8,7 +8,7 @@ import json
 
 def verify_requirements():
     """Verify all specific requirements from the review request"""
-    api_url = "https://furry-friends-78.preview.emergentagent.com/api"
+    api_url = "https://species-explorer-2.preview.emergentagent.com/api"
     
     print("🔍 Verifying specific requirements from review request...")
     print("=" * 60)

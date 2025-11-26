@@ -8,7 +8,7 @@ import json
 
 def test_search_with_real_image():
     """Test search with actual dog image from dataset"""
-    api_url = "https://furry-friends-78.preview.emergentagent.com/api"
+    api_url = "https://species-explorer-2.preview.emergentagent.com/api"
     
     print("🔍 Testing search with real dog image from dataset...")
     
