@@ -1,0 +1,138 @@
+{
+  "timestamp": "2025-11-26T10:53:19.362468",
+  "total_tests": 9,
+  "passed_tests": 9,
+  "success_rate": 100.0,
+  "test_details": [
+    {
+      "test": "API Root",
+      "success": true,
+      "details": "Status: 200",
+      "response_data": {
+        "message": "Animal Image Similarity Search API"
+      }
+    },
+    {
+      "test": "Dataset Stats",
+      "success": true,
+      "details": "Total images: 10, Categories: 5, Index built: True",
+      "response_data": {
+        "total_images": 10,
+        "categories": {
+          "elephant": 2,
+          "lion": 2,
+          "tiger": 2,
+          "cat": 2,
+          "dog": 2
+        },
+        "index_built": true,
+        "index_size": 10
+      }
+    },
+    {
+      "test": "Categories",
+      "success": true,
+      "details": "Found 5 categories: ['cat', 'dog', 'elephant', 'lion', 'tiger']",
+      "response_data": {
+        "categories": [
+          "cat",
+          "dog",
+          "elephant",
+          "lion",
+          "tiger"
+        ]
+      }
+    },
+    {
+      "test": "Sample Categories",
+      "success": true,
+      "details": "Found 30 sample categories, 5 expected ones",
+      "response_data": {
+        "categories": [
+          "lion",
+          "tiger",
+          "elephant",
+          "giraffe",
+          "zebra",
+          "bear",
+          "wolf",
+          "fox",
+          "deer",
+          "rabbit",
+          "eagle",
+          "owl",
+          "penguin",
+          "flamingo",
+          "parrot",
+          "dolphin",
+          "whale",
+          "shark",
+          "turtle",
+          "octopus",
+          "butterfly",
+          "bee",
+          "spider",
+          "ant",
+          "ladybug",
+          "cat",
+          "dog",
+          "horse",
+          "cow",
+          "sheep"
+        ]
+      }
+    },
+    {
+      "test": "Get Logs",
+      "success": true,
+      "details": "Retrieved 0 log entries",
+      "response_data": {
+        "log_count": 0
+      }
+    },
+    {
+      "test": "Clear Logs",
+      "success": true,
+      "details": "Response: Logs cleared",
+      "response_data": {
+        "status": "success",
+        "message": "Logs cleared"
+      }
+    },
+    {
+      "test": "Upload Dataset",
+      "success": true,
+      "details": "Uploaded 1 images to test_category",
+      "response_data": {
+        "uploaded": 1,
+        "images": [
+          {
+            "id": "78348841-fe07-44af-a6ee-f7625d294786",
+            "filename": "test_image.png",
+            "filepath": "/app/backend/uploads/dataset/test_category/78348841-fe07-44af-a6ee-f7625d294786.png",
+            "category": "test_category",
+            "uploaded_at": "2025-11-26T10:53:17.109484+00:00"
+          }
+        ]
+      }
+    },
+    {
+      "test": "Build Index",
+      "success": true,
+      "details": "Response: Index built successfully",
+      "response_data": {
+        "status": "success",
+        "message": "Index built successfully"
+      }
+    },
+    {
+      "test": "Search Images",
+      "success": true,
+      "details": "Found 5 results in 182.37ms, 11 images indexed",
+      "response_data": {
+        "results_count": 5,
+        "search_time_ms": 182.36660957336426
+      }
+    }
+  ]
+}
