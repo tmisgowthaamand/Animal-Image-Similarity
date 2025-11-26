@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-11-26T10:53:19.362468",
+  "timestamp": "2025-11-26T11:17:27.783548",
   "total_tests": 9,
   "passed_tests": 9,
   "success_rate": 100.0,
@@ -15,30 +15,32 @@
     {
       "test": "Dataset Stats",
       "success": true,
-      "details": "Total images: 10, Categories: 5, Index built: True",
+      "details": "Total images: 26, Categories: 6, Index built: True",
       "response_data": {
-        "total_images": 10,
+        "total_images": 26,
         "categories": {
-          "elephant": 2,
-          "lion": 2,
-          "tiger": 2,
-          "cat": 2,
-          "dog": 2
+          "cat": 5,
+          "dog": 5,
+          "test_category": 1,
+          "elephant": 5,
+          "tiger": 5,
+          "lion": 5
         },
         "index_built": true,
-        "index_size": 10
+        "index_size": 26
       }
     },
     {
       "test": "Categories",
       "success": true,
-      "details": "Found 5 categories: ['cat', 'dog', 'elephant', 'lion', 'tiger']",
+      "details": "Found 6 categories: ['cat', 'dog', 'elephant', 'lion', 'test_category', 'tiger']",
       "response_data": {
         "categories": [
           "cat",
           "dog",
           "elephant",
           "lion",
+          "test_category",
           "tiger"
         ]
       }
@@ -85,9 +87,9 @@
     {
       "test": "Get Logs",
       "success": true,
-      "details": "Retrieved 0 log entries",
+      "details": "Retrieved 7 log entries",
       "response_data": {
-        "log_count": 0
+        "log_count": 7
       }
     },
     {
@@ -107,11 +109,11 @@
         "uploaded": 1,
         "images": [
           {
-            "id": "78348841-fe07-44af-a6ee-f7625d294786",
+            "id": "324f2ce8-9729-4878-8eb5-1f885f2ec1f6",
             "filename": "test_image.png",
-            "filepath": "/app/backend/uploads/dataset/test_category/78348841-fe07-44af-a6ee-f7625d294786.png",
+            "filepath": "/app/backend/uploads/dataset/test_category/324f2ce8-9729-4878-8eb5-1f885f2ec1f6.png",
             "category": "test_category",
-            "uploaded_at": "2025-11-26T10:53:17.109484+00:00"
+            "uploaded_at": "2025-11-26T11:17:15.159069+00:00"
           }
         ]
       }
@@ -128,10 +130,10 @@
     {
       "test": "Search Images",
       "success": true,
-      "details": "Found 5 results in 182.37ms, 11 images indexed",
+      "details": "Found 5 results in 411.48ms, 27 images indexed",
       "response_data": {
         "results_count": 5,
-        "search_time_ms": 182.36660957336426
+        "search_time_ms": 411.47828102111816
       }
     }
   ]
