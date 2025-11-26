@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Build Animal Image Similarity Search app with actual similar images of dog, cat, lion, tiger, elephant categories"
+user_problem_statement: "Build Animal Image Similarity Search app with actual similar images - expanded to include all animal, bird, species, fish categories"
 
 backend:
   - task: "Dataset Management - Upload and store images by category"
@@ -111,7 +111,7 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
@@ -119,6 +119,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "TESTED: Dataset stats API returns 27 total images with correct category distribution: cat(5), dog(5), elephant(5), lion(5), tiger(5), test_category(2). Upload functionality working correctly."
+      - working: true
+        agent: "main"
+        comment: "EXPANDED: Added 60 new images across 30 NEW categories. Total now 87 images across 36 categories."
 
   - task: "FAISS Index Building - Build similarity search index"
     implemented: true
@@ -126,7 +129,7 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
@@ -134,6 +137,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "TESTED: Index building API works correctly. Index built successfully with 27 images. FAISS index loads properly on startup and search operations."
+      - working: true
+        agent: "main"
+        comment: "Index rebuilt with 87 images covering 36 animal categories including mammals, birds, fish, sea creatures, reptiles, amphibians, and insects."
 
   - task: "Image Search - Find similar images"
     implemented: true
@@ -141,7 +147,7 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
@@ -149,6 +155,21 @@ backend:
       - working: true
         agent: "testing"
         comment: "TESTED: Search API fully functional. Tested with real dog image from dataset - returned 10 results in ~424ms with perfect similarity match (1.0000) for identical image. Multipart form data with file, top_k, and threshold parameters working correctly."
+      - working: true
+        agent: "main"
+        comment: "Ready to test search across expanded 36-category dataset with birds, fish, reptiles, insects etc."
+
+  - task: "Sample Categories API - Return organized categories"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Updated API to return categories organized by type: mammals, birds, fish_and_sea, reptiles_and_amphibians, insects"
 
 frontend:
   - task: "Search UI - Upload query image and display results"
