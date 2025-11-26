@@ -13,8 +13,8 @@ def test_search_with_real_image():
     print("🔍 Testing search with real dog image from dataset...")
     
     try:
-        # Read the downloaded dog image
-        with open('/app/test_dog_image.jpg', 'rb') as f:
+        # Read a local dog image from the dataset
+        with open('/app/backend/uploads/dataset/dog/dog3.jpg', 'rb') as f:
             image_data = f.read()
         
         files = {'file': ('dog3.jpg', image_data, 'image/jpeg')}
