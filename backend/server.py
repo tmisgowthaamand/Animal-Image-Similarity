@@ -422,15 +422,14 @@ async def clear_dataset():
 
 @api_router.get("/sample-categories")
 async def get_sample_categories():
-    """Return sample animal categories for demo"""
-    categories = [
-        "lion", "tiger", "elephant", "giraffe", "zebra",
-        "bear", "wolf", "fox", "deer", "rabbit",
-        "eagle", "owl", "penguin", "flamingo", "parrot",
-        "dolphin", "whale", "shark", "turtle", "octopus",
-        "butterfly", "bee", "spider", "ant", "ladybug",
-        "cat", "dog", "horse", "cow", "sheep"
-    ]
+    """Return sample animal categories for demo - organized by type"""
+    categories = {
+        "mammals": ["cat", "dog", "lion", "tiger", "elephant", "bear", "wolf", "fox", "deer", "zebra", "giraffe", "rabbit", "panda", "koala", "horse", "cow"],
+        "birds": ["eagle", "owl", "parrot", "penguin", "flamingo", "peacock"],
+        "fish_and_sea": ["shark", "dolphin", "whale", "turtle", "octopus", "goldfish", "clownfish"],
+        "reptiles_and_amphibians": ["snake", "lizard", "crocodile", "frog"],
+        "insects": ["butterfly", "bee"]
+    }
     return {"categories": categories}
 
 @api_router.get("/images/{image_type}/{category}/{filename}")
